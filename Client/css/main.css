@@ -1,0 +1,182 @@
+/*
+    Nav bar styles
+*/
+
+#nav-content {
+    max-width: 1200px;
+    margin: auto;
+    width: 100%;
+    padding: 0px 10px;
+}
+.navbar-nav{
+    flex-direction:row!important;
+}
+@media only screen and (max-width: 600px) {
+    /*#nav-btns{*/
+    /*    display:block;*/
+    /*    max-width: 600px;*/
+    /*    margin: auto;*/
+    /*    width: 100%;*/
+    /*    padding: 0px 30px;*/
+    /*}*/
+    /*#logged-in-nav {*/
+    /*    display:block;*/
+    /*}*/
+    /*#logged-out-nav {*/
+    /*    display:block;*/
+    /*    max-width: 600px;*/
+    /*    margin: auto;*/
+    /*    width: 100%;*/
+    /*    padding: 0px 30px;*/
+    /*}*/
+    /*.username-display{*/
+    /*    text-align: center;*/
+    /*}*/
+    /*#page-content-wrapper{*/
+    /*    padding-top:134px!important;*/
+    /*}*/
+    .submit-textarea{
+        max-width:300px;
+    }
+    #login-indicator{
+        font-size: .59em;
+    }
+    .navbar-brand{
+        font-size: 1rem;
+    }
+}
+.login-btn{
+    background-image: url(/Client/assets/login.png);
+    height: 40px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 40px;
+    display:block;
+    opacity: 0.7; 
+}
+.login-btn:hover{
+    opacity: 1;
+}
+.register-btn{
+    background-image: url(/Client/assets/register.png);
+    height: 40px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 40px;
+    display:block;
+    margin-left: 5px;
+    opacity: 0.7; 
+}
+.register-btn:hover{
+    opacity: 1;
+}
+#snippet-date{
+    color:grey;
+    float:right;
+}
+.logout-btn{
+    background-image: url(/Client/assets/logout.png);
+    height: 40px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 40px;
+    display:block;
+    opacity: 0.7; 
+}
+.logout-btn:hover{
+    opacity: 1;
+}
+.submit-btn{
+    background-image: url(/Client/assets/add.png);
+    height: 40px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 40px;
+    margin-left:5px;
+    display:block;
+    opacity: 0.7; 
+}
+.submit-btn:hover{
+    opacity: 1;
+}
+#nav-content .navbar-nav button {
+    margin-left: 10px;
+    box-shadow: 2px 2px 6px #000;
+}
+
+#logo {
+    margin-top: -7px;
+}
+
+#recoverPasswordHidden, #registerUserHidden {
+    display: none;
+}
+
+.navbar-brand {
+    text-shadow: 2px 2px 6px #000;
+    margin-right:0;
+}
+
+.username-display {
+    color: #ffffff;
+    padding-top: 7px;
+}
+
+/*
+    Page content styles
+*/
+
+#page-content-wrapper {
+    background-color: transparent;
+    max-width: 1200px;
+    padding-top: 59px;
+    height: 100%;
+}
+
+#page-content {
+    /*margin-top: 55px;*/
+    padding-top: 15px;
+    background-color: #ddd;
+    height: 100%;
+}
+
+#alert {
+    border-radius: 0px;
+    margin-top: -15px;
+}
+
+#snippet-container, #snippet-list-container {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#snippet-frame {
+    max-height: 500px;
+    border-top: solid #bbb 1px;
+    border-bottom: solid #bbb 1px;
+    box-shadow: 4px 4px 8px #444;
+    padding: 5px;
+}
+
+/*
+    Modal styles
+*/
+
+.modal h6 {
+    font-style: italic;
+    font-weight: 100;
+    font-size: 14px;
+    margin: -5px 0px 10px 5px;
+}
+
+.modal form label {
+    margin-bottom: 2px;    
+}
+
+.modal form input {
+    margin-bottom: 5px;
+}
