@@ -487,7 +487,7 @@ function deleteSnippet(e) {
     })
     }
 }
-setInterval(getSnippets(), 1000);
+setInterval(getSnippets, 1000);
 
 //Helper functions
 $.fn.extend({
