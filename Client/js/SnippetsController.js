@@ -8,7 +8,7 @@ const model = new SnippetsModel();
 let currentUser;
 let currentPermissions;
 
-// 
+//
 $(document).ready(function() {
     // initialize datatable
     window.snippetsTable = $('#snippets-table').DataTable({
@@ -26,68 +26,68 @@ $(document).ready(function() {
         model.setSelectedSnippet(snippetsTable.row(this));
         updateActiveSnippet();
     });
-    
+
     // delete snippet button (only seen on active snippet)
     $('#deleteSnippetButton').on('click', deleteSnippet);
-    
+
     // update snippet button (only seen on active snippet)
     $('#updateSnippetModal').on('show.bs.modal', updateSnippetForm);
-    
-    // l    
+
+    // l
     $('#forgot-password-button').on('click', () => { $('#login').transitionTo($('#recoverPassword'));   });
-    
+
     $('#back-to-login').on('click', () => { $('#recoverPassword').transitionTo($('#login'));    });
-    
+
     $('#loginModal').on('hidden.bs.modal', () => { $('#recoverPassword').transitionTo($('#login')); });
-    
-    
-    
+
+
+
     // click event listeners on modal submit buttons
     // these each trigger a click event on a hidden submit button in their respective forms
-    
+
      $('#login-submit').on('click', () => { $('#loginUserHidden').click(); });
-     
+
      $('#register-submit').on('click', () => { $('#registerUserHidden').click(); });
-     
+
      $('#update-snippet-submit').on('click', () => { $('#updateSnippetHidden').click(); });
-    
+
      $('#recover-submit').on('click', () => { $('#recoverPasswordHidden').click(); });
-     
+
      $('#snippet-submit').on('click', () => { $('#submitSnippetHidden').click(); });
-    
-    
+
+
     // listen for form submit events
     $('form#loginUserForm').on('submit', loginUser);
-    
+
     $('form#updateSnippetForm').on('submit', updateSnippet);
-    
+
     $('form#registerUserForm').on('submit', registerUser);
-    
+
     $('form#recoverPasswordForm').on('submit', recoverPassword);
-    
+
     $('form#snippetEntryForm').on('submit', createSnippet);
-    
+
     //change this when html team adds button
     $('#logout-button').on('click', logoutUser);
-    
+
     // make initial ajax calls
     getSnippets();
     getUserSession();
     getUserPermission();
     getLanguages();
     Prism.highlightElement($('#snippet-frame').find('code')[0]);
-}); 
+});
 
 // view functions
 // updates view for active snippet
 function updateActiveSnippet() {
     let snippet = model.getSelectedSnippet();
     let row = model.getSnippetRow();
-    
+
     $('#snippets-table tbody')
         .find('tr.selected')
         .removeClass('selected');
-        
+
     $(row.node()).addClass('selected');
     let code = $('#snippet-frame')
         .find('code')
@@ -145,7 +145,7 @@ function updateLoginStatus() {
         nextOpenNavbar = $('#logged-in-nav');
     }
     if (currentOpenNavbar.attr('id') != nextOpenNavbar.attr('id')){
-        currentOpenNavbar.transitionTo(nextOpenNavbar);    
+        currentOpenNavbar.transitionTo(nextOpenNavbar);
     }
 }
 
@@ -163,10 +163,10 @@ function updateLanguageList(){
 
 function updateSnippetForm() {
     let currentSnippet = model.getSelectedSnippet();
-    
+
     let snippetName = currentSnippet.description;
     let snippetText = currentSnippet.code;
-    
+
     let target = $('#updateSnippetForm');
     target.find('input[name="snippetName"]').val(snippetName);
     target.find('textarea[name="snippetText"]').val(snippetText);
@@ -209,16 +209,16 @@ function getLanguages() {
 // user and password submit
 function registerUser(e) {
     let target = $(e.target),
-        email =           target.find('input[name="email"]'), 
+        email =           target.find('input[name="email"]'),
         password =        target.find('input[name="password"]'),
         confirmPassword = target.find('input[name="confirmPassword"]'),
-        securityAnswer1 = target.find('input[name="securityAnswer1"]'), 
+        securityAnswer1 = target.find('input[name="securityAnswer1"]'),
         securityAnswer2 = target.find('input[name="securityAnswer2"]');
-        
-    let formValid = email.get(0).checkValidity() && 
-                    password.get(0).checkValidity() && 
+
+    let formValid = email.get(0).checkValidity() &&
+                    password.get(0).checkValidity() &&
                     confirmPassword.get(0).checkValidity() &&
-                    securityAnswer1.get(0).checkValidity() && 
+                    securityAnswer1.get(0).checkValidity() &&
                     securityAnswer2.get(0).checkValidity();
     if (formValid) {
         e.preventDefault();
@@ -253,7 +253,7 @@ function registerUser(e) {
     } else { return true; }
 }
 
-// login function 
+// login function
 function loginUser(e){
     let target = $(e.target),
         email =      target.find('input[name="email"]'),
@@ -277,7 +277,7 @@ function loginUser(e){
             }
         }).fail(function(response) {
             userAlert('danger', 'Login failed. Please try again.');
-           
+
         }).always(function(response) {
             email.val('');
             password.val('');
@@ -302,18 +302,18 @@ function logoutUser() {
     .always(function(){
         // there is nothing to do here, should we remove this?
     });
-    
+
 }
 // function to recover password based on two security questions
 function recoverPassword(e){
     //e.target points to the DOM where input name is equal to the name of the modal form (ie. '#recoverPassword' form)
     let target = $(e.target),
-        securityAnswer1 =    target.find('input[name="securityAnswer1"]'), 
+        securityAnswer1 =    target.find('input[name="securityAnswer1"]'),
         securityAnswer2 =    target.find('input[name="securityAnswer2"]'),
         email =              target.find('input[name="email"]'),
         newPassword =        target.find('input[name="newPassword"]'),
-        confirmNewPassword = target.find('input[name="verifyNewPassword"]'); 
-        
+        confirmNewPassword = target.find('input[name="verifyNewPassword"]');
+
     let formValid = securityAnswer1.get(0).checkValidity() &&
                     securityAnswer2.get(0).checkValidity() &&
                     email.get(0).checkValidity() &&
@@ -356,7 +356,7 @@ function createSnippet(e) {
         snippetName =     target.find('input[name="snippetName"]'),
         language =        target.find('select'),
         snippetText =     target.find('textarea[name="snippetText"]');
-        let formValid = snippetName.get(0).checkValidity() && 
+        let formValid = snippetName.get(0).checkValidity() &&
                         snippetText.get(0).checkValidity();
         if (formValid) {
             e.preventDefault();
@@ -423,13 +423,13 @@ function setRecentSnippetAdmin(){
 }
 // update snippet creation submit
 function updateSnippet(e) {
-    
+
     // $snippetID, $code, $username
-    
+
     let target = $(e.target),
         snippetName =     target.find('input[name="snippetName"]'), // THESE CHANGE (?)
         snippetText =     target.find('textarea[name="snippetText"]'); // THESE CHANGE (?)
-    let formValid = snippetName.get(0).checkValidity() && 
+    let formValid = snippetName.get(0).checkValidity() &&
                     snippetText.get(0).checkValidity();
     if (formValid) {
         e.preventDefault();
@@ -451,10 +451,10 @@ function updateSnippet(e) {
             } else {
                 userAlert('danger',  data.errmsg);
             }
-        }) 
+        })
         .fail(function(data) {
             userAlert('danger', 'Failed to update snippet.');
-        })   
+        })
         .always(function(data) {
             snippetName.val('');
             snippetText.val('');
@@ -469,7 +469,7 @@ function deleteSnippet(e) {
     let url = SnippetsUrl + '?cmd=delete_snippet';
     let selectedSnippetID = model.getSelectedSnippet().id;
     if (confirm("Are you sure you want to delete this?")){
-        
+
     $.post(url, {
         snippetID: selectedSnippetID,
     })
@@ -487,7 +487,7 @@ function deleteSnippet(e) {
     })
     }
 }
-
+setInterval(getSnippets(), 1000);
 
 //Helper functions
 $.fn.extend({
@@ -498,5 +498,5 @@ $.fn.extend({
     },
 });
 
-    
+
 })();
